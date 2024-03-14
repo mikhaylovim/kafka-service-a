@@ -1,6 +1,7 @@
 package com.example.kafkaservicea;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,8 +12,13 @@ import java.util.Random;
 @SpringBootApplication
 public class KafkaProducerApplication implements CommandLineRunner {
 
+	@Value("${app.event-generation-delay}")
+	private long eventGenerationDelay;
+
+	@Value("${app.customer-count}")
+	private int customerCount;
+
 	private static final String TOPIC = "card_transactions";
-	private static final int CUSTOMER_COUNT = 10000; // 10k customers
 	private static final Random random = new Random();
 
 	@Autowired
@@ -26,10 +32,10 @@ public class KafkaProducerApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// Бесконечный цикл для демонстрации. В реальном приложении стоит ограничить.
 		while (true) {
-			int customerId = random.nextInt(CUSTOMER_COUNT);
+			int customerId = random.nextInt(customerCount);
 			String transactionEvent = "CustomerID: " + customerId + ", Transaction Amount: " + (random.nextDouble() * 100);
 			kafkaTemplate.send(TOPIC, transactionEvent);
-			Thread.sleep(1000); // Задержка для имитации частоты событий.
+			Thread.sleep(eventGenerationDelay); // Задержка для имитации частоты событий.
 		}
 	}
 }

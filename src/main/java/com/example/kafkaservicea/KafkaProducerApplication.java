@@ -1,5 +1,7 @@
 package com.example.kafkaservicea;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +13,8 @@ import java.util.Random;
 
 @SpringBootApplication
 public class KafkaProducerApplication implements CommandLineRunner {
+
+	private static final Logger logger = LoggerFactory.getLogger(KafkaProducerApplication.class);
 
 	@Value("${app.event-generation-delay}")
 	private long eventGenerationDelay;
@@ -35,6 +39,7 @@ public class KafkaProducerApplication implements CommandLineRunner {
 			int customerId = random.nextInt(customerCount);
 			String transactionEvent = "CustomerID: " + customerId + ", Transaction Amount: " + (random.nextDouble() * 100);
 			kafkaTemplate.send(TOPIC, transactionEvent);
+			logger.info(transactionEvent + " sended");
 			Thread.sleep(eventGenerationDelay); // Задержка для имитации частоты событий.
 		}
 	}

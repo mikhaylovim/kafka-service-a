@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zookeeper-metrics-config
+  namespace: kafka
+data:
+  zookeeper-metrics-config.yml: |
+    lowercaseOutputName: true
+    rules:
+      - pattern: "org.apache.ZooKeeperService<name0=ReplicatedServer_id(\\d+)><>(\\w+)"
+        name: "zookeeper_$2"
+      - pattern: "org.apache.ZooKeeperService<name0=ReplicatedServer_id(\\d+), name1=InMemoryDataTree><>(\\w+)"
+        name: "zookeeper_inmemorydatatree_$2"

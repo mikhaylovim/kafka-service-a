@@ -1,0 +1,72 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"kafka.strimzi.io/v1beta2","kind":"Kafka","metadata":{"annotations":{},"creationTimestamp":"2024-03-17T22:29:14Z","generation":3,"name":"my-cluster","namespace":"kafka","resourceVersion":"2398","uid":"dcd6b77c-c631-4763-b20b-262bf57d17ca"},"spec":{"entityOperator":{"topicOperator":{},"userOperator":{}},"kafka":{"config":{"default.replication.factor":1,"inter.broker.protocol.version":"3.7","min.insync.replicas":1,"offsets.topic.replication.factor":1,"transaction.state.log.min.isr":1,"transaction.state.log.replication.factor":1},"listeners":[{"name":"plain","port":9092,"tls":false,"type":"internal"},{"name":"tls","port":9093,"tls":true,"type":"internal"}],"metricsConfig":{"type":"jmxPrometheusExporter","valueFrom":{"configMapKeyRef":{"key":"kafka-metrics-config.yml","name":"kafka-metrics"}}},"replicas":2,"storage":{"type":"jbod","volumes":[{"deleteClaim":false,"id":0,"size":"100Gi","type":"persistent-claim"}]},"version":"3.7.0"},"zookeeper":{"metricsConfig":{"type":"jmxPrometheusExporter","valueFrom":{"configMapKeyRef":{"key":"zookeeper-metrics-config.yaml","name":"zookeeper-metrics-config"}}},"replicas":1,"storage":{"deleteClaim":false,"size":"100Gi","type":"persistent-claim"}}},"status":{"clusterId":"vAPR35VnQKG2l9yTjwoLZQ","conditions":[{"lastTransitionTime":"2024-03-17T22:44:07.587878278Z","status":"True","type":"Ready"}],"kafkaMetadataState":"ZooKeeper","kafkaVersion":"3.7.0","listeners":[{"addresses":[{"host":"my-cluster-kafka-bootstrap.kafka.svc","port":9092}],"bootstrapServers":"my-cluster-kafka-bootstrap.kafka.svc:9092","name":"plain"},{"addresses":[{"host":"my-cluster-kafka-bootstrap.kafka.svc","port":9093}],"bootstrapServers":"my-cluster-kafka-bootstrap.kafka.svc:9093","certificates":["-----BEGIN CERTIFICATE-----\nMIIFLTCCAxWgAwIBAgIUcZ6GF9mQxfvRpYno0gnj4/B1kVgwDQYJKoZIhvcNAQEN\nBQAwLTETMBEGA1UECgwKaW8uc3RyaW16aTEWMBQGA1UEAwwNY2x1c3Rlci1jYSB2\nMDAeFw0yNDAzMTcyMjI5MTVaFw0yNTAzMTcyMjI5MTVaMC0xEzARBgNVBAoMCmlv\nLnN0cmltemkxFjAUBgNVBAMMDWNsdXN0ZXItY2EgdjAwggIiMA0GCSqGSIb3DQEB\nAQUAA4ICDwAwggIKAoICAQDoeGH7qc2Y5uKXVD94Vp3YDb6ZMKu3XSmsuB82I3Xp\nOVapq3W9uHrmnTwPRPQdT0KyPHh1WM7SrRnyG8Dxt0vRLGNpe4eWsU21YuglqdZo\n3vmWSJoeAkuv6gr4CyfSAwSEXXlaFc3ykqJIO4cG9t/Awv/uWMddVMjFViowWjpQ\nwWPGHtg1ifPwYxl/swQKeBONt/9h5BWlSdePADFOr4DGSGppjwa9+sFuCr6Frd14\n521piVNJVnZzBjYNQbTrnwzyWUGkQbYFDz5FIeSMBMrbcGYnZCdLFzFuaheNBVxv\nf8H/4C+79sePrNWApcEVuCtmISadCI5qJ/0iZ1IY/QUM8L6ydg+f22qn4fsyfAIN\nvj8N4SIRR0MWB78t1IrhUyZc7nIwqomqHePZEjrbMrvIKJYjFm8oxCVfGh3LfLll\n7u0+LkAV9ncAD0FK14EysxVC4PBeZny60b5DwY/R28FG/dge/rUxoU8jtWEMgmu7\n3Yzp0687PfqrHusZjLnLdg0Bw4vRXFBMqvWNJ/lcMHbGlkaiHixJFItgU+YqPv7R\nXV15IuXjOSK8tmnzUtAQ0/QF5r1LmSMgDrNQh167TwTqAzndabMzvLTWCsw4s5iI\nTEmsYROH8v3JMHLTlNpDckAGY5WiM3qnflh+UghN95HJZd+OmyhFDiVHL8zx7RUb\npQIDAQABo0UwQzAdBgNVHQ4EFgQU60hMyrm55gkgoqxSAZJdfIXuKSowEgYDVR0T\nAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAQYwDQYJKoZIhvcNAQENBQADggIB\nAJeJhN0fvU80FJCEMYv+ntKn9Bzg/r0fb/SJYZqaK/8SCJccCXXDf4qd9YozSCbq\n4A0ltNQls3ZZXZYIBke7WoNnlj4/5Sxq4J6jEcHsKEwMr4hWHQQ85nqJzVB9WcuO\nP6gbuGBP0uPdDGLq46YNUx5faoWzi9v00HF7SaCo8+T4BiGW88CHG+CVWpSzAq8V\n3Pr7ZW+yRopJFIAKUJD8C/sfBGf+sNaynIa+E77F3sd9ING0vNWBwixNkTYwGCFo\nEYGpDEXfI/AZ2xM5xG43NPbZlyuDxu+0L/4u/KIph2Nuh7o3m3plB9OqEftm12Ce\nT05UnCW+6fUnGi3ZNrF7IWCLZ9yV0b+qfmhZ6ATnu9hK6zQ2jA/bc6DCpTuWuRgP\nyXW4L9wl+NYEnoQ2Rjwnxs7jQS7zfMZ1BF97P/Pp4XMmS67VCsiTpZQ+pAX1lsXL\nSin9qCp7cZPgjT8AZeFlCpf0ToeJyDAgL98FHq2OQy69CfplxQsqx3UID1utU3eK\nmRGRt7i6ZeHmMXsSLZ7o7VOGLpQV83/Th0YfGXyVJpGFQYXZAKwZ56aKXyoygwQi\nWkmm6A/9CBU2sDTK8w3LGsFcPhv7b9PJ0f2P4a41qEGnnHWFLT5Pwn4pso8RAtTj\nwDXp8J8qqs1qmWUhqTxquvUh3wrDvxka6xZmXBNsevkj\n-----END CERTIFICATE-----\n"],"name":"tls"}],"observedGeneration":3,"operatorLastSuccessfulVersion":"0.40.0"}}
+  creationTimestamp: "2024-03-17T22:29:14Z"
+  generation: 4
+  name: my-cluster
+  namespace: kafka
+  resourceVersion: "4594"
+  uid: dcd6b77c-c631-4763-b20b-262bf57d17ca
+spec:
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
+  kafka:
+    config:
+      default.replication.factor: 1
+      inter.broker.protocol.version: "3.7"
+      min.insync.replicas: 1
+      offsets.topic.replication.factor: 1
+      transaction.state.log.min.isr: 1
+      transaction.state.log.replication.factor: 1
+    listeners:
+    - name: plain
+      port: 9092
+      tls: false
+      type: internal
+    - name: tls
+      port: 9093
+      tls: true
+      type: internal
+    metricsConfig:
+      type: jmxPrometheusExporter
+      valueFrom:
+        configMapKeyRef:
+          name: kafka-metrics
+          key: kafka-metrics-config.yml
+    replicas: 2
+    storage:
+      type: jbod
+      volumes:
+      - deleteClaim: false
+        id: 0
+        size: 100Gi
+        type: persistent-claim
+    version: 3.7.0
+  zookeeper:
+    metricsConfig:
+      type: jmxPrometheusExporter
+      valueFrom:
+        configMapKeyRef:
+          key: zookeeper-metrics-config.yaml
+          name: zookeeper-metrics-config
+    replicas: 1
+    storage:
+      deleteClaim: false
+      size: 100Gi
+      type: persistent-claim
+status:
+  clusterId: vAPR35VnQKG2l9yTjwoLZQ
+  conditions:
+  - lastTransitionTime: "2024-03-17T23:11:01.566822451Z"
+    message: ConfigMap kafka-metrics does not exist
+    reason: InvalidConfigurationException
+    status: "True"
+    type: NotReady
+  kafkaMetadataState: ZooKeeper
+  kafkaVersion: 3.7.0
+  observedGeneration: 4
+  operatorLastSuccessfulVersion: 0.40.0

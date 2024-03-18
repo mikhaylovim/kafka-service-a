@@ -1,0 +1,10 @@
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: 'kafka'
+        static_configs:
+          - targets: ['my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9404']
+      - job_name: 'java-application'
+        static_configs:
+          - targets: ['kafka-service-a.kafka.svc.cluster.local:8080']
+        metrics_path: '/actuator/prometheus'
